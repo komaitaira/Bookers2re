@@ -10,6 +10,32 @@
   </head>
 
   <body>
+    <header>
+      <span>Bookers</span>
+      <nav>
+        <ul>
+          <!-- user_signed_in?はdeviseの機能 -->
+          <% if user_signed_in? %>
+          <!-- signinしている場合 -->
+            <li><%= link_to "Home", users_show_path %></li>
+            <li><%= link_to "Users", users_index_path %></li>
+            <li><%= link_to "books", books_index %></li>
+            <li><%= link_to "logout", destroy_user_session_path %></li>
+          <% else %>
+          <!-- signinしていない場合 -->
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "About", home_about_path %></li>
+            <li><%= link_to "sign up", new_user_registration_path %></li>
+            <li><%= link_to "login", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <p>CopyRight Infratop.inc</p>
+    </footer>
   </body>
 </html>

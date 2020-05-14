@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root 'home#top'
   get 'home/about'
   # rootがわからない, ログイン後のリダイレクト先　users/show
+  resources :books
+  resources :users
 end
