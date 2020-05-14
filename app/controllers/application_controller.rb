@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
   end
-# sign upの際にnameカラムを利用
+# sign_up/inの際にnameカラムを利用
 end
