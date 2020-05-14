@@ -17,7 +17,8 @@
           <!-- user_signed_in?はdeviseの機能 -->
           <% if user_signed_in? %>
           <!-- signinしている場合 -->
-            <li><%= link_to "Home", user_path %></li>
+            <li><%= link_to "Home", user_path(current_user.id) %></li>
+            <!-- current_userはdevise側が用意しているヘルパーで、ログイン中のユーザを取得できる -->
             <li><%= link_to "Users", users_path %></li>
             <li><%= link_to "books", books_path %></li>
             <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>

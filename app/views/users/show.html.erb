@@ -1,2 +1,60 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2>User info</h2>
+<!-- 以下にプロフィール画像 -->
+<div>
+  <p>ここにプロフィール画像</p>
+</div>
+
+<table>
+  <tbody>
+  	<tr>
+  	  <th>name</th>
+  	  <th><%= @user.name %></th>
+  	</tr>
+    <tr>
+      <th>introduction</th>
+      <th></th>
+      <!-- 上記にinstructionのカラムが必要 -->
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <p>ここにプロフィール編集リンク</p>
+</div>
+
+<!-- form_for部分 -->
+<h2>New book</h2>
+<%= form_for (@book) do |f| %>
+  <div class="field">
+    <label for="book_title">Title</label><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+  	<label for="opinion">Opinion</label><br />
+  	<%= f.text_area :body %>
+  </div>
+  <%= f.submit "Create Book" %>
+<% end %>
+
+
+
+
+<h2>Books</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @books.each do |b| %>
+  	  <tr>
+  	  	<th>プロフィール画像</th>
+  	    <th><%= b.title %></th>
+  	    <th><%= b.body %></th>
+  	  </tr>
+  	<% end %>
+  </tbody>
+</table>
