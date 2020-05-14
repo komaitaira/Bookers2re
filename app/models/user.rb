@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
+  attachment :profile_image #refileを使い画像投稿ができるようにする
 end

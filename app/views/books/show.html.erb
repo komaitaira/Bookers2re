@@ -4,9 +4,10 @@
   	<th>プロフィール画像</th>
   	<th><%= link_to @book.title, user_path(@user.id) %></th>
   	<th><%= @book.body %></th>
+  	<!-- ログインしているユーザーのみに編集リンク、削除リンクが表示されるようにする -->
   	<% if @user.id == current_user.id %>
   	  <th><%= link_to "Edit", edit_book_path(@book.id) %></th>
+  	　<th><%= link_to "Destroy", book_path(@book.id),method: :delete, "data-confirm" => "本当に消しますか？" %></th>
   	<% end %>
-  	<th><%= link_to "Destroy", book_path(@book.id),method: :delete, "data-confirm" => "本当に消しますか？" %></th>
   </tr>
 </tbody>
