@@ -1,7 +1,7 @@
 <h2>User info</h2>
 <!-- 以下にプロフィール画像 -->
 <div>
-  <%= attachment_image_tag @user, :profile_image, :fill, 30, 30, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
+  <%= attachment_image_tag @user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
 </div>
 
 <table>
@@ -12,7 +12,7 @@
   	</tr>
     <tr>
       <td>introduction</td>
-      <td></td>
+      <td><%= @user.introduction %></td>
       <!-- 上記にinstructionのカラムが必要 -->
     </tr>
   </tbody>
@@ -55,7 +55,7 @@
   	  <tr>
   	  	<td>
           <%= link_to user_path(@user.id) do %>
-            <%= attachment_image_tag @user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'20x20',format: "no_image.jpg" %>
+            <%= attachment_image_tag @user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
           <% end %>
         </td>
   	    <td><%= link_to book.title, book_path(book.id) %></td>
