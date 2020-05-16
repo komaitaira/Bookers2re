@@ -1,3 +1,43 @@
+<h2>User info</h2>
+<!-- 以下にプロフィール画像 -->
+<div>
+  <%= attachment_image_tag @user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
+</div>
+
+<table>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td>introduction</td>
+      <td><%= @user.introduction %></td>
+      <!-- 上記にinstructionのカラムが必要 -->
+    </tr>
+  </tbody>
+</table>
+
+<div class="prpfile">
+  <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+</div>
+
+<!-- form_for部分 -->
+<h2>New book</h2>
+<%= form_for (@book) do |f| %>
+  <div class="field">
+    <label for="book_title">Title</label><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <label for="opinion">Opinion</label><br />
+    <%= f.text_area :body %>
+  </div>
+  <%= f.submit "Create Book" %>
+<% end %>
+
+
+
 <h2>Users</h2>
 
 <table>
