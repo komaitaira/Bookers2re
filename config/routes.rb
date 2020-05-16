@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :books
   resources :users
   root 'home#top'
-  get 'home/about'
+  get 'home/about' => 'home#about'
 
 end
