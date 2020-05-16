@@ -1,5 +1,8 @@
 class BooksController < ApplicationController
+  # (ログインしていない状態で他のページに遷移しようとした場合、ログインページに遷移する)
   before_action :authenticate_user!
+  # 編集画面表示、修正内容の更新アクション実行時はログインしているユーザーの場合のみ実行可とする。 
+  before_action :correct_user, only: [:edit, :update]
 
 
   def index
@@ -46,9 +49,18 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  
   private
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+
+  def correct_user
+    @book = Book.find(params[:id])
+    # belong_toのおかげでbookオブジェクトからuserオブジェクトへアクセスできる。
+    if current_user.id != @book.user_id
+      redirect_to books_path
+    end
   end
 
 end
