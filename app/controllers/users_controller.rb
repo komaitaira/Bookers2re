@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
+    @book = Book.new
+    @user = current_user
     @users = User.all
   end
 
@@ -35,8 +37,8 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id])
-    if current_user != @user
+    user = User.find(params[:id])
+    if user != current_user
       redirect_to user_path(current_user.id)
     end
   end
