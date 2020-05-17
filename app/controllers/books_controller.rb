@@ -12,9 +12,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @book_new = Book.new
     @book = Book.find(params[:id])
+    @user = current_user
+    @books = Book.new
   end
 
   def create
@@ -57,10 +57,10 @@ class BooksController < ApplicationController
   end
 
   def correct_user
-    @book = Book.find(params[:id])
-    # belong_toのおかげでbookオブジェクトからuserオブジェクトへアクセスできる。
-    if current_user.id != @book.user_id
-      redirect_to books_path
+    book = Book.find(params[:id])
+    # belongs_toのおかげでbookオブジェクトからuserオブジェクトへアクセスできる。
+    if book.user.id != current_user.id
+      redirect_to user_path(current_user.id)
     end
   end
 
