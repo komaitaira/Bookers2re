@@ -1,62 +1,74 @@
-<h2>User info</h2>
-<!-- 以下にプロフィール画像 -->
-<div>
-  <%= attachment_image_tag @user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
-</div>
+<div class="container">
+  <div class="row">
 
-<table>
-  <tbody>
-    <tr>
-      <td>name</td>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <td>introduction</td>
-      <td><%= @user.introduction %></td>
-      <!-- 上記にinstructionのカラムが必要 -->
-    </tr>
-  </tbody>
-</table>
+    <div class="col-xs-3">
+      <h2>User info</h2>
+      <!-- 以下にプロフィール画像 -->
+      <div>
+        <%= attachment_image_tag @user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
+      </div>
 
-<div class="prpfile">
-  <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
-</div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+            <!-- 上記にinstructionのカラムが必要 -->
+          </tr>
+        </tbody>
+      </table>
 
-<!-- form_for部分 -->
-<h2>New book</h2>
-<%= form_for (@book) do |f| %>
-  <div class="field">
-    <label for="book_title">Title</label><br />
-    <%= f.text_field :title %>
+      <div class="row">
+        <%= link_to "", edit_user_path(@user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+      </div>
+
+      <!-- form_for部分 -->
+      <h2>New book</h2>
+      <%= form_for (@book) do |f| %>
+        <div class="field row">
+          <label for="book_title">Title</label>
+          <%= f.text_field :title, class: "col-xs-12" %>
+        </div>
+        <div class="field row">
+          <label for="book_opinion">Opinion</label>
+          <%= f.text_area :body, class: "col-xs-12" %>
+        </div>
+        <div class="action row">
+          <%= f.submit "Create Book", class: "col-xs-12 btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+    <div class="col-xs-9">
+      <h2>Users</h2>
+
+      <table class="table">
+        <thead>
+  	      <tr>
+  	        <th>image</th>
+  	        <th>name</th>
+  	        <th></th>
+  	      </tr>
+        </thead>
+        <tbody>
+  	      <% @users.each do |user| %>
+  	        <tr>
+  	          <td>
+  	            <%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
+              </td>
+              <td><%= user.name %></td>
+              <td><%= link_to "Show", user_path(user.id) %></td>
+  	        </tr>
+  	      <% end %>
+        </tbody>
+      </table>
+    </div>
+
   </div>
-  <div class="field">
-    <label for="opinion">Opinion</label><br />
-    <%= f.text_area :body %>
-  </div>
-  <%= f.submit "Create Book" %>
-<% end %>
-
-
-
-<h2>Users</h2>
-
-<table>
-  <thead>
-  	<tr>
-  	  <th>image</th>
-  	  <th>name</th>
-  	  <th></th>
-  	</tr>
-  </thead>
-  <tbody>
-  	<% @users.each do |user| %>
-  	  <tr>
-  	    <td>
-  	      <%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "50x50" %>
-        </td>
-        <td><%= user.name %></td>
-        <td><%= link_to "Show", user_path(user.id) %></td>
-  	  </tr>
-  	<% end %>
-  </tbody>
-</table>
+</div>
