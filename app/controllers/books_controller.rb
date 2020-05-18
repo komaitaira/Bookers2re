@@ -59,7 +59,9 @@ class BooksController < ApplicationController
   def correct_user
     book = Book.find(params[:id])
     # belongs_toのおかげでbookオブジェクトからuserオブジェクトへアクセスできる。
-    if book.user_id != current_user.id
+
+    if book.user.id != current_user.id
+
       redirect_to books_path
     end
   end
